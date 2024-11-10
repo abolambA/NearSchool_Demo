@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "804615314093",
+    "project_id": "nearschool-demo",
+    "storage_bucket": "nearschool-demo.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804615314093:android:0463402728790a5554c424",
+        "android_client_info": {
+          "package_name": "com.example.near_school_demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBULZ5pGxgZ2bLOREo_vqt4kGv6xEVpmZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

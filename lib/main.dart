@@ -1,7 +1,26 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:near_school_demo/screens/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(DemoApp());
+
+void main() async{
+
+WidgetsFlutterBinding.ensureInitialized(); 
+if(kIsWeb){
+await Firebase.initializeApp(
+  options: const FirebaseOptions(apiKey: "AIzaSyCQDsTOCvyyuFDsTywdaW3rPXvbFTaHA48",
+  authDomain: "nearschool-demo.firebaseapp.com",
+  projectId: "nearschool-demo",
+  storageBucket: "nearschool-demo.firebasestorage.app",
+  messagingSenderId: "804615314093",
+  appId: "1:804615314093:web:fe3ed68a7ebab8aa54c424")
+);}
+else{
+  Firebase.initializeApp();
+}
+runApp(DemoApp());
+}
 
 class DemoApp extends StatelessWidget {
   @override

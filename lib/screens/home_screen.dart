@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:near_school_demo/screens/about_screen.dart';
 import 'package:near_school_demo/screens/admins/admins_home_screen.dart';
+import 'package:near_school_demo/screens/users/users_home_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -65,7 +66,12 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icons.group,
               text: isEnglish ? 'Users' : 'المستخدمين',
               onPressed: () {
-                // Navigate to Users screen if implemented
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UsersHomeScreen(isEnglish: isEnglish),
+                  ),
+                );
               },
             ),
           ],
