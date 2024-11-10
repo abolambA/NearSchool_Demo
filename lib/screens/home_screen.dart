@@ -15,19 +15,19 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         elevation: 1,
         leading: IconButton(
-          icon: Icon(Icons.info, color: Colors.blue),
+          icon: Icon(Icons.info, color: Colors.blue.shade900),
           onPressed: () {
             // Info icon action here
           },
         ),
         title: Text(
           isEnglish ? 'Demo App' : 'تطبيق إستعراض',
-          style: TextStyle(color: Colors.blue),
+          style: TextStyle(color: Colors.blue.shade900),
         ),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.language, color: Colors.blue),
+            icon: Icon(Icons.language, color: Colors.blue.shade900),
             onPressed: () {
               setState(() {
                 isEnglish = !isEnglish;
