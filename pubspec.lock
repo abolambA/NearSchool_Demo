@@ -91,7 +91,6 @@ packages:
     version: "5.3.0"
   firebase_core_web:
     dependency: "direct main"
-    dependency: transitive
     description:
       name: firebase_core_web
       sha256: "362e52457ed2b7b180964769c1e04d1e0ea0259fdf7025fdfedd019d4ae2bd88"
@@ -122,8 +121,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.5+14"
-=======
->>>>>>> 791f5fee40b23465b457bb7fe1b60c094ee7aafc
   flutter:
     dependency: "direct main"
     description: flutter
