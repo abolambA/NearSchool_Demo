@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:near_school_demo/screens/about_screen.dart';
+import 'package:near_school_demo/screens/admins/admins_home_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -51,7 +52,12 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icons.group,
               text: isEnglish ? 'Admins' : 'المشرفين',
               onPressed: () {
-                // Navigate to Admins screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CalledStudentsListScreen(isEnglish: isEnglish),
+                  ),
+                );
               },
             ),
             SizedBox(height: 20),
@@ -59,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icons.group,
               text: isEnglish ? 'Users' : 'المستخدمين',
               onPressed: () {
-                // Navigate to Users screen
+                // Navigate to Users screen if implemented
               },
             ),
           ],
