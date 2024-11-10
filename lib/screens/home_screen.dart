@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:near_school_demo/screens/about_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -17,7 +18,12 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: IconButton(
           icon: Icon(Icons.info, color: Colors.blue.shade900),
           onPressed: () {
-            // Info icon action here
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AboutScreen(isEnglish: isEnglish),
+              ),
+            );
           },
         ),
         title: Text(
@@ -66,7 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0), backgroundColor: Colors.blue.shade900,
+        padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+        backgroundColor: Colors.blue.shade900,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
