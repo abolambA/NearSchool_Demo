@@ -36,7 +36,7 @@ class _StudentInfoScreenState extends State<StudentInfoScreen> {
     });
 
     // Wait for 2 minutes before showing "Received" and "Not Received" buttons
-    Timer(Duration(minutes: 1), () {
+    Timer( Duration(minutes: 1), () {
       setState(() {
         _isWaiting = false;
         _receivedOptionsVisible = true;
@@ -49,8 +49,8 @@ class _StudentInfoScreenState extends State<StudentInfoScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(received ? (widget.isEnglish ? 'Student Received' : 'تم استقبال الطالب') : (widget.isEnglish ? 'Student Not Received' : 'لم يتم استقبال الطالب')),
-          content: Text(received ? (widget.isEnglish ? 'You have received your student.' : 'لقد استلمت الطالب.') : (widget.isEnglish ? 'You have not received your student.' : 'لم تستلم الطالب.')),
+          title: Text(received ? (widget.isEnglish ? 'Student Received' : 'تم استلام الطالب') : (widget.isEnglish ? 'Student Not Received' : 'لم يتم استلام الطالب')),
+          content: Text(received ? (widget.isEnglish ? 'You have received your student.' : 'لقد استلمت الطالب.') : (widget.isEnglish ? 'You have not received your student. The Admin is going to be alerted ' : ' لم تستلم الطالب. سيتم إعلام المشرف بهذا')),
           actions: <Widget>[
             TextButton(
               child: Text(widget.isEnglish ? 'OK' : 'حسنا'),
@@ -132,7 +132,10 @@ class _StudentInfoScreenState extends State<StudentInfoScreen> {
                   children: [
                     ElevatedButton(
                       onPressed: () => _handleResponse(true),
-                      child: Text(widget.isEnglish ? 'Received' : 'تم الاستلام'),
+                      child: Text(
+                        widget.isEnglish ? 'Received' : 'تم الاستلام',
+                        style: TextStyle(color: Colors.white),
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
                         shape: RoundedRectangleBorder(
@@ -145,7 +148,10 @@ class _StudentInfoScreenState extends State<StudentInfoScreen> {
                     SizedBox(height: 16.0),
                     ElevatedButton(
                       onPressed: () => _handleResponse(false),
-                      child: Text(widget.isEnglish ? 'Not Received' : 'لم يتم الاستلام'),
+                      child: Text(
+                        widget.isEnglish ? 'Not Received' : 'لم يتم الاستلام',
+                        style: TextStyle(color: Colors.white),
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
                         shape: RoundedRectangleBorder(
