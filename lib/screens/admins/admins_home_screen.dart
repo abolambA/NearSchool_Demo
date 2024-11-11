@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CalledStudentsListScreen extends StatefulWidget {
   final bool isEnglish;
@@ -11,21 +11,7 @@ class CalledStudentsListScreen extends StatefulWidget {
 }
 
 class _CalledStudentsListScreenState extends State<CalledStudentsListScreen> {
-  final DatabaseReference _database = FirebaseDatabase.instance.ref().child('called_students');
-  List<Map<String, dynamic>> calledStudents = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _database.onValue.listen((event) {
-      if (event.snapshot.value != null) {
-        final data = Map<String, dynamic>.from(event.snapshot.value as Map<dynamic, dynamic>);
-        setState(() {
-          calledStudents = data.values.map((value) => Map<String, dynamic>.from(value)).toList();
-        });
-      }
-    });
-  }
+  final CollectionReference _calledStudentsCollection = FirebaseFirestore.instance.collection('called_students');
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +29,11 @@ class _CalledStudentsListScreenState extends State<CalledStudentsListScreen> {
         ),
         centerTitle: true,
       ),
-      body: calledStudents.isEmpty
-          ? Center(
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _calledStudentsCollection.snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
               child: Text(
                 widget.isEnglish ? 'There is no students requested' : 'لا يوجد طلاب مطلوبون',
                 style: TextStyle(
@@ -54,27 +43,33 @@ class _CalledStudentsListScreenState extends State<CalledStudentsListScreen> {
                 ),
                 textAlign: TextAlign.center,
               ),
-            )
-          : ListView.builder(
-              padding: EdgeInsets.all(16.0),
-              itemCount: calledStudents.length,
-              itemBuilder: (context, index) {
-                final student = calledStudents[index];
-                return Card(
-                  margin: EdgeInsets.symmetric(vertical: 8.0),
-                  child: ListTile(
-                    title: Text(
-                      student['name'],
-                      style: TextStyle(color: Colors.blue.shade900),
-                    ),
-                    subtitle: Text(
-                      student['classNumber'],
-                      style: TextStyle(color: Colors.blue.shade900),
-                    ),
+            );
+          }
+
+          final calledStudents = snapshot.data!.docs;
+
+          return ListView.builder(
+            padding: EdgeInsets.all(16.0),
+            itemCount: calledStudents.length,
+            itemBuilder: (context, index) {
+              final studentData = calledStudents[index].data() as Map<String, dynamic>;
+              return Card(
+                margin: EdgeInsets.symmetric(vertical: 8.0),
+                child: ListTile(
+                  title: Text(
+                    studentData['name'] ?? 'Unknown',
+                    style: TextStyle(color: Colors.blue.shade900),
                   ),
-                );
-              },
-            ),
+                  subtitle: Text(
+                    '${studentData['grade'] ?? 'Unknown'} - ${studentData['section'] ?? 'Unknown'}',
+                    style: TextStyle(color: Colors.blue.shade900),
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

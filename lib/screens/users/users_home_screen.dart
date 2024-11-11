@@ -22,22 +22,26 @@ class UsersHomeScreen extends StatelessWidget {
         children: [
           StudentTile(
             name: isEnglish ? 'Kamel Abdel Razaq Al-Rifai' : 'كامل عبد الرزاق الرفاعي',
-            classNumber: '10-3',
+            grade: '10',
+            section: '3',
             isEnglish: isEnglish,
           ),
           StudentTile(
             name: isEnglish ? 'Mohammed Nihad Al-Soufi' : 'محمد نهاد الصوفي',
-            classNumber: '10-6',
+            grade: '10',
+            section: '6',
             isEnglish: isEnglish,
           ),
           StudentTile(
             name: isEnglish ? 'Mohammed Emad Al-Soufi' : 'محمد عماد الصوفي',
-            classNumber: '7-2',
+            grade: '7',
+            section: '2',
             isEnglish: isEnglish,
           ),
           StudentTile(
             name: isEnglish ? 'Bashir Al-Rifai' : 'بشير الرفاعي',
-            classNumber: '2-1',
+            grade: '2',
+            section: '1',
             isEnglish: isEnglish,
           ),
         ],
@@ -48,10 +52,16 @@ class UsersHomeScreen extends StatelessWidget {
 
 class StudentTile extends StatelessWidget {
   final String name;
-  final String classNumber;
+  final String grade;
+  final String section;
   final bool isEnglish;
 
-  StudentTile({required this.name, required this.classNumber, required this.isEnglish});
+  StudentTile({
+    required this.name,
+    required this.grade,
+    required this.section,
+    required this.isEnglish,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +74,7 @@ class StudentTile extends StatelessWidget {
           style: TextStyle(color: Colors.blue.shade900),
         ),
         subtitle: Text(
-          classNumber,
+          '$grade-$section',
           textAlign: isEnglish ? TextAlign.left : TextAlign.right,
           style: TextStyle(color: Colors.blue.shade900),
         ),
@@ -75,7 +85,8 @@ class StudentTile extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => StudentInfoScreen(
                 name: name,
-                classNumber: classNumber,
+                grade: grade,
+                section: section,
                 isEnglish: isEnglish,
               ),
             ),
