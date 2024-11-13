@@ -36,7 +36,7 @@ class _StudentInfoScreenState extends State<StudentInfoScreen> {
     });
 
     // Wait for 2 minutes before showing "Received" and "Not Received" buttons
-    Timer( Duration(minutes: 1), () {
+    Timer( Duration(seconds: 40), () {
       setState(() {
         _isWaiting = false;
         _receivedOptionsVisible = true;
